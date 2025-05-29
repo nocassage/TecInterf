@@ -7,7 +7,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={Profile} />
+        <Route path="/" element={<Profile/>} />
       </Routes>
     </Router>
   )
