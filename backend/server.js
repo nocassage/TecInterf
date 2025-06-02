@@ -1,6 +1,7 @@
 const express = require('express')
 const cors = require('cors')
 const { SerialPort } = require('serialport')
+const { ReadlineParser } = require('@serialport/parser-readline')
 
 const app = express()
 const port = 3001
@@ -14,39 +15,41 @@ const arduinoPort = new SerialPort({
   baudRate: 9600,
 })
 
+const parser = arduinoPort.pipe(new ReadlineParser({ delimiter: '\n' }));
+
+// Print Arduino output to the Node.js console
+parser.on('data', (line) => {
+  console.log('[Arduino]', line.trim());
+});
+
 arduinoPort.on('open', () => {
   console.log('Serial connection to Arduino opened.')
 })
 
 app.post('/set-alarm', (req, res) => {
     console.log('Received request to set alarm:', req.body)
-    const time = req.body.time ? req.body.time : null;
-    const weekday = req.body.weekday ? req.body.weekday : null;
-    if (!time) {
-        return res.status(400).send('Missing time')
-    } else if (!weekday) {
-        return res.status(400).send('Missing weekday')
-    }
+    const time = req.body.time ? req.body.time : null
+    const weekday = req.body.weekday ? req.body.weekday : null
 
-    const command = `SET_ALARM ${time} ${weekday}\n`
-    arduinoPort.write(command, (err) => {
-    if (err) {
-      return res.status(500).send('Error sending command to Arduino')
-    }
-    console.log('Sent to Arduino:', command.trim());
-    res.send('Alarm set')
+    if (!time) return res.status(400).send('Missing time')
+    else if (!weekday) return res.status(400).send('Missing weekday')
 
     // Save the alarm to alarms.json
     const fs = require('fs')
     const path = require('path')
     const filePath = path.join(__dirname, 'alarms.json')
-    if (!fs.existsSync(filePath)) {
-        return res.status(404).send('No alarms found')
-    }
+    if (!fs.existsSync(filePath)) return res.status(404).send('No alarms found')
+
     let alarms = JSON.parse(fs.readFileSync(filePath, 'utf8'))
     alarms.alarms.push({ time, weekday })
     fs.writeFileSync(filePath, JSON.stringify(alarms, null, 2), 'utf8')
-  })
+
+    const jsonData = JSON.stringify(alarms.alarms)
+    arduinoPort.write(jsonData, (err) => {
+        if (err) return res.status(500).send('Error sending command to Arduino')
+        console.log('Sent to Arduino:', jsonData.trim());
+        res.send('Alarm set')
+    })
 })
 
 app.get('/alarms', (req, res) => {

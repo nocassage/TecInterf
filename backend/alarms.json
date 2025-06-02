@@ -1,22 +1,16 @@
 {
   "alarms": [
     {
-      "name": "Alarm 1",
       "weekday": "Monday",
       "time": "08:00"
     },
     {
-      "name": "Alarm 2",
       "weekday": "Tuesday",
       "time": "09:30"
     },
     {
-      "time": "17:47",
-      "weekday": "Tuesday"
-    },
-    {
-      "time": "23:51",
-      "weekday": "Thursday"
+      "time": "18:14",
+      "weekday": "Monday"
     }
   ]
 }
