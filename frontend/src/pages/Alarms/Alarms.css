@@ -1,0 +1,56 @@
+.alarms-page {
+   height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    background-color: #E6F0FA;
+    justify-content: center;
+}
+
+h1{
+width: 80%;
+color: #000000;
+font-size: 150%;
+font-weight: bold;
+}
+
+.alarmes{
+    width: 86%;
+    padding: 2rem;
+    gap: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+h2{
+width: 90%;
+flex-shrink: 0;
+color: #2C3E50;
+font-size: 20px;
+}
+
+.linha {
+width: 100%;
+height: 2px;
+background-color:#6a9acece;
+}
+
+.info{
+width: 100%;
+}
+
+p{
+color:  #2C3E50;
+font-size: 16px;
+font-weight: 300;
+}
+
+.tipo {
+font-weight: 700;  
+}
