@@ -13,7 +13,7 @@
     flex-direction: column;
 }
 
-h1{
+.hora h1{
     color: #e9edf3;
     font-size: 90px;
     font-weight: bold;
@@ -27,7 +27,7 @@ h2{
     width: 100%;
 }
 
-.image-button {
+.image {
     background-color: #b8cded; 
     padding: 5%;
     border: none; 
@@ -43,7 +43,7 @@ h2{
     height: 50px;
 }
 
-.image-button:active {
+.image:active {
   background-color: #a8bfe3;
   border: 5px solid #89abdf;
   transform: translateY(1px);
