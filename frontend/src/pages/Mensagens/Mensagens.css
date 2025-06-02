@@ -10,6 +10,21 @@
     
 }
 
+
+.top {
+    display: flex;
+    position: absolute;
+    margin-bottom: 170%;
+    padding: 10px 20px;
+    color: #333;
+}
+
+.top p{
+    margin-left: 14px;
+    margin-right: 20px;
+    font-size: 20px;
+}
+
 .name {
     position:absolute;
     top: 0;
@@ -22,13 +37,14 @@
 }
 
 .mensagens-content {
-    padding: 0px;
+    display: flex;
+    flex-direction: column; 
     max-height: 400px;
     overflow-y: auto; 
-    margin-top: 50px;
 }
 
 .mensagem-item {
+    max-width: 70%; 
     margin-bottom: 20px;
     padding: 15px;
     background-color: #f9f9f9;
@@ -36,16 +52,31 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.mensagem-item p {
-    margin: 5px 0;
+.mensagem-item.left {
+    align-self: flex-start;
+    background-color: #ffffff;
+    text-align: left;
+}
+
+.mensagem-item.right {
+    align-self: flex-end; 
+    background-color: #97d594dd; 
+    text-align: right;
+}
+
+.mensagem-item p{
+    font-size: 20px;
 }
 
 .mensagens-input {
     display: flex;
     padding: 20px;
+    width: 100%;
     background-color: #f4f4f4;
     border-top: 1px solid #ddd;
-    margin-top: 20px;
+    position: absolute;
+    margin-top: 150%;
+    align-items: center;
 }
 
 textarea {
@@ -55,18 +86,26 @@ textarea {
     border-radius: 8px;
     resize: none;
     font-size: 16px;
+    align-content: center;
 }
 
-button {
+
+
+.send-button {
     margin-left: 10px;
-    padding: 10px 20px;
-    background-color: #6a9ace;
-    color: #fff;
+    width: 50px;
+    height: 50px;
+    background-color: #97d594;
     border: none;
     border-radius: 8px;
-    cursor: pointer;
-    font-size: 16px;
+   
 }
+
+.button-send{
+    width: 30px;
+    height: 30px;
+}
+
 
 .menu-buttons {
     position: absolute;
