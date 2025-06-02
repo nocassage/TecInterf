@@ -35,9 +35,39 @@ app.post('/set-alarm', (req, res) => {
     }
     console.log('Sent to Arduino:', command.trim());
     res.send('Alarm set')
+
+    // Save the alarm to alarms.json
+    const fs = require('fs')
+    const path = require('path')
+    const filePath = path.join(__dirname, 'alarms.json')
+    if (!fs.existsSync(filePath)) {
+        return res.status(404).send('No alarms found')
+    }
+    let alarms = JSON.parse(fs.readFileSync(filePath, 'utf8'))
+    alarms.alarms.push({ time, weekday })
+    fs.writeFileSync(filePath, JSON.stringify(alarms, null, 2), 'utf8')
   })
+})
+
+app.get('/alarms', (req, res) => {
+    console.log('Received request for alarms')
+
+    const fs = require('fs')
+    const path = require('path')
+    const filePath = path.join(__dirname, 'alarms.json')
+    if (!fs.existsSync(filePath)) {
+        return res.status(404).send('No alarms found')
+    }
+    const alarms = JSON.parse(fs.readFileSync(filePath, 'utf8'))
+    if (!alarms || alarms.length === 0) {
+        return res.status(404).send('No alarms found')
+    } else {
+        console.log('Alarms found:', alarms)
+        res.json(alarms)
+    }
 })
 
 app.listen(port, () => {
   console.log(`Server listening on http://localhost:${port}`)
 })
+

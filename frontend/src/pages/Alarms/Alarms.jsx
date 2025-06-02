@@ -1,5 +1,5 @@
 import "./Alarms.css"
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import axios from 'axios'
 
 const Alarms = () => {
@@ -20,6 +20,20 @@ const Alarms = () => {
             alert('Failed to set alarm.')
         }
     }
+
+    const fetchAlarms = async () => {
+        try {
+            const response = await axios.get('http://localhost:3001/alarms')
+            setAlarms(response.data.alarms || [])
+        } catch (error) {
+            console.error('Error fetching alarms:', error)
+            alert('Failed to fetch alarms.')
+        }
+    }
+
+    useEffect(() => {
+        fetchAlarms()
+    }, [])
 
     return (
         <div className="alarms-page">
