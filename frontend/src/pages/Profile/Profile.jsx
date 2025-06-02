@@ -9,15 +9,15 @@ const Profile = () => {
                 
                 <div className="profile-info">
                     <label>Nome do Cuidador:</label> 
-                    <input type="text" className="input" placeholder="Nome"/> {/*value={roomID} onChange={(e) =>  setRoomID(e.target.value)}*/}
+                    <input type="text" className="inp" placeholder="Nome"/> {/*value={roomID} onChange={(e) =>  setRoomID(e.target.value)}*/}
                 </div>
                 <div className="profile-info">
                     <label>Nome do Utente:</label> 
-                    <input type="text" className="input" placeholder="Nome"/> {/*value={roomID} onChange={(e) =>  setRoomID(e.target.value)}*/}
+                    <input type="text" className="inp" placeholder="Nome"/> {/*value={roomID} onChange={(e) =>  setRoomID(e.target.value)}*/}
                 </div>
                 <div className="profile-info">
                     <label>ID do Utente:</label> 
-                    <input type="text" className="input" placeholder="ID"/> {/*value={roomID} onChange={(e) =>  setRoomID(e.target.value)}*/}
+                    <input type="text" className="inp" placeholder="ID"/> {/*value={roomID} onChange={(e) =>  setRoomID(e.target.value)}*/}
                 </div>
             </div>
             <button className="enter"><p>ENTRAR</p> </button>
