@@ -5,6 +5,7 @@ import Alarms from './pages/Alarms/Alarms'
 import User from './pages/User/User'
 import Mensagens from './pages/Mensagens/Mensagens'
 import Notificacao from './pages/Notificacao/Notificacao'
+import Blister from './pages/Blister/Blister'
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
          <Route path="/user" element={<User/>} />
          <Route path="/sms" element={<Mensagens/>} />
          <Route path="/notif" element={<Notificacao/>} />
+         <Route path="/blister" element={<Blister/>} />
       </Routes>
     </Router>
   )
