@@ -42,6 +42,15 @@ app.post('/set-alarm', (req, res) => {
 
     let alarms = JSON.parse(fs.readFileSync(filePath, 'utf8'))
     alarms.alarms.push({ time, weekday })
+    // Sort alarms by weekday and time
+    // alarms.alarms.sort((a, b) => {
+    //     const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    //     const dayA = daysOfWeek.indexOf(a.weekday)
+    //     const dayB = daysOfWeek.indexOf(b.weekday)
+    //     if (dayA !== dayB) return dayA - dayB
+    //     return a.time.localeCompare(b.time)
+    // })
+    
     fs.writeFileSync(filePath, JSON.stringify(alarms, null, 2), 'utf8')
 
     const jsonData = JSON.stringify(alarms.alarms)
@@ -66,6 +75,11 @@ app.get('/alarms', (req, res) => {
         return res.status(404).send('No alarms found')
     } else {
         console.log('Alarms found:', alarms)
+        const jsonData = '<' + JSON.stringify(alarms.alarms) + '>'
+        arduinoPort.write(jsonData, (err) => {
+            if (err) return res.status(500).send('Error sending command to Arduino')
+            console.log('Sent to Arduino:', jsonData.trim());
+        })
         res.json(alarms)
     }
 })

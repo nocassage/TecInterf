@@ -15,7 +15,11 @@ const Alarms = () => {
         try {
             await axios.post('http://localhost:3001/set-alarm', { time, weekday })
             alert('Alarm set successfully!')
-            setAlarms([...alarms, { time, weekday }])
+
+            const newAlarm = { time, weekday }
+            setAlarms(prevAlarms => {
+                return [...prevAlarms, newAlarm]
+            })
         } catch (error) {
             alert('Failed to set alarm.')
         }
@@ -52,28 +56,31 @@ const Alarms = () => {
                     </div>
                 ))}
             </div>
-            <div style={{ padding: '2rem', fontFamily: 'sans-serif' }}>
+            <div className="set-alarm">
                 <h2>Set Alarm</h2>
-                <input
-                    type="time"
-                    value={time}
-                    onChange={(e) => setTime(e.target.value)}
-                />
-                <select
-                    value={weekday}
-                    onChange={(e) => setWeekday(e.target.value)}
-                    style={{ marginLeft: '1rem' }}
-                >
-                    <option value="">Select Weekday</option>
-                    <option value="Monday">Segunda</option>
-                    <option value="Tuesday">Terça</option>
-                    <option value="Wednesday">Quarta</option>
-                    <option value="Thursday">Quinta</option>
-                    <option value="Friday">Sexta</option>
-                    <option value="Saturday">Sábado</option>
-                    <option value="Sunday">Domingo</option>
-                </select>
-                <button onClick={setAlarm} style={{ marginLeft: '1rem' }}>
+                <label>Time:
+                    <input
+                        type="time"
+                        value={time}
+                        onChange={(e) => setTime(e.target.value)}
+                    />
+                </label>
+                <label>Weekday:
+                    <select
+                        value={weekday}
+                        onChange={(e) => setWeekday(e.target.value)}
+                    >
+                        <option value="">Select Weekday</option>
+                        <option value="Monday">Segunda</option>
+                        <option value="Tuesday">Terça</option>
+                        <option value="Wednesday">Quarta</option>
+                        <option value="Thursday">Quinta</option>
+                        <option value="Friday">Sexta</option>
+                        <option value="Saturday">Sábado</option>
+                        <option value="Sunday">Domingo</option>
+                    </select>
+                </label>
+                <button onClick={setAlarm}>
                     Set Alarm
                 </button>
             </div>
