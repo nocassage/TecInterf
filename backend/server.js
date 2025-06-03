@@ -11,7 +11,7 @@ app.use(express.json())
 
 // Update this to match your actual COM port or /dev/tty*
 const arduinoPort = new SerialPort({
-  path: '/dev/tty.usbmodem21401', // e.g., '/dev/ttyUSB0' on Linux
+  path: '/dev/tty.usbmodem21101', // e.g., '/dev/ttyUSB0' on Linux
   baudRate: 9600,
 })
 
@@ -42,14 +42,6 @@ app.post('/set-alarm', (req, res) => {
 
     let alarms = JSON.parse(fs.readFileSync(filePath, 'utf8'))
     alarms.alarms.push({ time, weekday })
-    // Sort alarms by weekday and time
-    // alarms.alarms.sort((a, b) => {
-    //     const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
-    //     const dayA = daysOfWeek.indexOf(a.weekday)
-    //     const dayB = daysOfWeek.indexOf(b.weekday)
-    //     if (dayA !== dayB) return dayA - dayB
-    //     return a.time.localeCompare(b.time)
-    // })
     
     fs.writeFileSync(filePath, JSON.stringify(alarms, null, 2), 'utf8')
 
@@ -74,7 +66,7 @@ app.get('/alarms', (req, res) => {
     if (!alarms || alarms.length === 0) {
         return res.status(404).send('No alarms found')
     } else {
-        console.log('Alarms found:', alarms)
+    
         const jsonData = '<' + JSON.stringify(alarms.alarms) + '>'
         arduinoPort.write(jsonData, (err) => {
             if (err) return res.status(500).send('Error sending command to Arduino')
@@ -82,6 +74,18 @@ app.get('/alarms', (req, res) => {
         })
         res.json(alarms)
     }
+})
+
+app.post('/deactivate', (req, res) => {
+    const command = 'STOP_ALARM\n'
+    arduinoPort.write(command, (err) => {
+        if (err) {
+            console.error('Error sending command to Arduino:', err)
+            return res.status(500).send('Error sending command to Arduino')
+        }
+        console.log('Sent to Arduino:', command)
+        res.send('Alarm deactivated')
+    })
 })
 
 app.listen(port, () => {
