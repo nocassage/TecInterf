@@ -22,8 +22,6 @@ const Notificacao = () => {
         recognition.onresult = function (event) {
             for (let i = event.resultIndex; i < event.results.length; i++) {
                 if (event.results[i].isFinal) {
-                    console.log(content)
-                    console.log(event.results[i][0].transcript.trim())
                     if (event.results[i][0].transcript.trim().toLowerCase() == content.toLowerCase()) {
                         console.log("Correct phrase spoken")
                         setCorrect(true)
@@ -46,7 +44,7 @@ const Notificacao = () => {
             console.error('Error deactivating alarm:', error)
         }
         setTimeout(() => {
-            //window.location.href = "/alarms"
+             window.location.href = "/alarms"
         }, 2000)
     }
 
