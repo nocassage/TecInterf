@@ -58,7 +58,7 @@ const Notificacao = () => {
         <div className="notif-page">
             <div className="hora">
                 <p>{new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit"})}</p>
-                <h2>Suplemento</h2>
+            <h2 className="sup">Suplemento</h2>
             </div>
             <p>Carrege no microfone e diga: {content}</p>
             <button className="image" onClick={handleClick}>
