@@ -33,7 +33,7 @@
     height: 40px;
 }
 
-h1{
+.blister-page h1{
     padding: 10px;
     padding-top: 25px;
     width: 70%;
@@ -42,7 +42,7 @@ h1{
     font-weight: bold;
 }
 
-h2{
+.blister-page h2{
     padding: 10px;
     color: #000000;
     font-size: 15px;
@@ -57,7 +57,7 @@ h2{
     border-radius: 999px;
 }
 
-p{
+.blister-page p{
     font-size: 12px;
     color: #000000;
     padding-left: 5px;
