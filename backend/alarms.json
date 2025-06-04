@@ -5,8 +5,12 @@
       "weekday": "Monday"
     },
     {
-      "time": "17:57",
+      "time": "23:12",
       "weekday": "Tuesday"
+    },
+    {
+      "time": "16:21",
+      "weekday": "Wednesday"
     }
   ]
 }
