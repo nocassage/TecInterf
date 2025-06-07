@@ -9,10 +9,9 @@ const port = 3001
 app.use(cors())
 app.use(express.json())
 
-
 // Update this to match your actual COM port or /dev/tty*
 const arduinoPort = new SerialPort({
-  path: '/dev/tty.usbmodem21401', // e.g., '/dev/ttyUSB0' on Linux
+  path: '/dev/tty.usbmodem11101', // e.g., '/dev/ttyUSB0' on Linux
   baudRate: 9600,
 })
 
