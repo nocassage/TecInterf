@@ -8,7 +8,7 @@ This project is a simple pill alarm system that uses an Arduino UNO to control a
 - **Node.js Server**: Manages the alarms and communicates with the Arduino.
 - **React Web App**: Provides a user interface to set and manage alarms.
 
-![Pill Alarm System]("https://raw.githubusercontent.com/nocassage/TecInterf/main/rmImages/Diagrama.png")
+![Pill Alarm System]("https://raw.githubusercontent.com/nocassage/TecInterf/main/rmImgs/Diagrama.png")
 
 # Installation
 1. **Arduino UNO**:  Mount the buzzer, LED, HC-SR04 sensor, RTC, and Reed Switch as per the schematic. Connect you arduino to your computer and upload the Arduino sketch to the Arduino UNO. Check the `Projeto` folder in this repository for the sketch file. You can use the Arduino IDE to upload the sketch.
